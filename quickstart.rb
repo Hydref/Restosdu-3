@@ -3,6 +3,9 @@ require 'googleauth'
 require 'googleauth/stores/file_token_store'
 require 'fileutils'
 require 'mime'
+require 'dotenv'
+
+Dotenv.load(.env)
 include  MIME
 
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
@@ -62,7 +65,7 @@ msg.subject = 'ceci est un test'
 msg.body = Text.new('coucou!', 'plain', 'charset' => 'us-ascii')
 msg.from = {'salutlesboloss@yopmail.com' => 'Coucou Boloss'}
 msg.to   = {
-    'salutlesboloss@yopmail.com' => nil,
+    'jimmy.charpagne@gmail.com' => nil,
 }
 
 # Création de la requête, insertion du contenu dans la propriété `raw`
