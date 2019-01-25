@@ -5,12 +5,12 @@ require 'fileutils'
 require 'mime'
 require 'dotenv'
 
-Dotenv.load(.env)
+Dotenv.load(".env")
 include  MIME
 
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
 APPLICATION_NAME = 'Gmail API Ruby Quickstart'.freeze
-CREDENTIALS_PATH = 'credentials.json'.freeze
+CREDENTIALS_PATH = '.env'.freeze
 # The file token.yaml stores the user's access and refresh tokens, and is
 # created automatically when the authorization flow completes for the first
 # time.
@@ -63,9 +63,9 @@ msg = Mail.new #msg est une instance de la classe « Mail ». On va définir ses
 msg.date = Time.now
 msg.subject = 'ceci est un test'
 msg.body = Text.new('coucou!', 'plain', 'charset' => 'us-ascii')
-msg.from = {'salutlesboloss@yopmail.com' => 'Coucou Boloss'}
+msg.from = {'jimmy.charpagne@gmail.com' => 'Coucou Boloss'}
 msg.to   = {
-    'jimmy.charpagne@gmail.com' => nil,
+    'salutlesboloss@yopmail.com' => nil,
 }
 
 # Création de la requête, insertion du contenu dans la propriété `raw`
