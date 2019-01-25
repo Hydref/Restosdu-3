@@ -4,9 +4,9 @@ require 'googleauth/stores/file_token_store'
 require 'fileutils'
 require 'mime'
 require 'dotenv'
+include MIME
+Dotenv.load('.env')
 
-Dotenv.load(".env")
-include  MIME
 
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
 APPLICATION_NAME = 'Gmail API Ruby Quickstart'.freeze
@@ -46,26 +46,16 @@ service = Google::Apis::GmailV1::GmailService.new
 service.client_options.application_name = APPLICATION_NAME
 service.authorization = authorize
 
-# Show the user's labels
-user_id = 'me'
-result = service.list_user_labels(user_id)
-puts 'Labels:'
-puts 'No labels found' if result.labels.empty?
-result.labels.each { |label| puts "- #{label.name}" }
-
-# Initialisation de l'API
-service = Google::Apis::GmailV1::GmailService.new
-service.client_options.application_name = APPLICATION_NAME
-service.authorization = authorize
+content_msg = "Bonjour, \nJe m'appelle Emma CALVET et je permets de contacter la mairie de [!!!CITY_NAME!!!] à propos du remarquable travail que font Les Restos du Coeur. \nCette association répand le bien dans la France et aide les plus démunis à s'en tirer. Avez-vous pensé à travailler avec eux ? Soutenir Les Restos du Coeur, c'est important pour notre cohésion sociale : rejoignez le mouvement ! \nMerci à vous"
 
 # Création du contenu du message
 msg = Mail.new #msg est une instance de la classe « Mail ». On va définir ses variables d’instance
 msg.date = Time.now
 msg.subject = 'ceci est un test'
-msg.body = Text.new('coucou!', 'plain', 'charset' => 'us-ascii')
-msg.from = {'jimmy.charpagne@gmail.com' => 'Coucou Boloss'}
+msg.body = Text.new(content_msg, 'plain', 'charset' => 'us-ascii')
+msg.from = {'emma.calvet.g@gmail.com' => 'Emma Calvet'}
 msg.to   = {
-    'salutlesboloss@yopmail.com' => nil,
+    'emma.calvet.g@gmail.com' => nil,
 }
 
 # Création de la requête, insertion du contenu dans la propriété `raw`
