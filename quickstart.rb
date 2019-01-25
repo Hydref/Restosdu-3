@@ -60,9 +60,9 @@ msg = Mail.new #msg est une instance de la classe « Mail ». On va définir ses
 msg.date = Time.now
 msg.subject = 'ceci est un test'
 msg.body = Text.new('coucou!', 'plain', 'charset' => 'us-ascii')
-msg.from = {'hicham34660@gmail.com' => 'Coucou Man'}
+msg.from = {'salutlesboloss@yopmail.com' => 'Coucou Boloss'}
 msg.to   = {
-    'hicham.34@hotmail.fr' => nil,
+    'salutlesboloss@yopmail.com' => nil,
 }
 
 # Création de la requête, insertion du contenu dans la propriété `raw`
